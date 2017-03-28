@@ -1,0 +1,91 @@
+spring:
+  profiles:
+    active: dev
+
+#logback configuration
+logging: 
+  config: "classpath:logback.xml"
+
+#embedded server
+server:
+  port: 8091
+  sessionTimeout: 10
+  
+#mybatis
+mybatis:
+  configLocation: classpath:mybatis-config.xml
+  mapperLocations: classpath*:mapper/*.xml
+  typeAliasesPackage: com.wxjfkg.payment.entity
+    
+#***production enviroment begin***
+---
+spring:
+  profiles: prod
+      
+#dubbo properties
+dubbo:
+  address: zookeeper://192.168.7.3:2181
+  port: 21813
+
+#alipay
+alipay:
+  gateway: "https://openapi.alipaydev.com/gateway.do"
+  appId: ""
+  privateKey: ""
+  publicKey: ""
+
+#wxpay
+wxpay:
+  appId: ""
+  appsecret: ""
+  mchId: ""
+
+#***production enviroment end***
+
+#***development enviroment begin***
+---
+spring:
+  profiles: dev
+    
+#dubbo properties
+dubbo:
+  address: zookeeper://127.0.0.1:2181
+  port: 21813
+
+#alipay
+alipay:
+  gateway: "https://openapi.alipaydev.com/gateway.do"
+  appId: ""
+  privateKey: ""
+  publicKey: ""
+#wxpay
+wxpay:
+  appId: ""
+  appsecret: ""
+  mchId: ""
+  
+#***development enviroment end***
+
+#***sit enviroment begin***
+---
+spring:
+  profiles: sit
+    
+#dubbo properties
+dubbo:
+  address: zookeeper://localhost:2181
+  port: 21804
+
+#alipay
+alipay:
+  gateway: "https://openapi.alipaydev.com/gateway.do"
+  appId: ""
+  privateKey: ""
+  publicKey: ""
+  
+#wxpay
+wxpay:
+  appId: ""
+  appsecret: ""
+  mchId: ""
+#***sit enviroment end***
